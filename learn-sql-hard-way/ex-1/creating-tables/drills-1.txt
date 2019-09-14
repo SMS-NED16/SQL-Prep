@@ -1,0 +1,5 @@
+1.Tried typing out the entire CREATE statement in lowercase. When I tried to compile it with sqlite3, I got an error saying unidentified character ) in Line 1.
+
+This probably means that even though SQL is supposed to be case insensitive, using all lowercase is probably not the best idea. 
+
+Also even though I have put each statement on a different line, the compiler error is still saying the error is on line 1, which suggests it may not be parsing newline characters properly.
