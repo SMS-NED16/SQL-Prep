@@ -1,0 +1,14 @@
+QUESTION 2: A pet owned by more than one person?
+Yes, it's possible, both IRL and in this database. The database does not implement a primary key restriction on the pet_id, which means that the same
+pet_id INTEGER can appear multiple times in the table of person_pet records. This makes sense, because as the author pointed out, multiple people can 
+own a pet. Everyone in the family technically owns the pet, so the database allows us to add `n` different family members, each of which have the `x`
+pet_id to show they own the dog.
+
+This is actually useful because I can imagine using a query to lookup all people who own a specific pet. 
+
+
+QUESTION 3: Alternative design of putting a pet_id in the person table. 
+I think the problem with this approach is that if we decide to instantiate a person before instantiating that person's pet, we would have 
+to use NULL for the pet_id value. Later, when the pet is instantiated, we would have to UPDATE the person_id record with the appropriate pet_id.
+This is a lot of back and forth/updating, which is more prone to errors and mistakes. Might actually be easier to just maintain a relational table
+that can be updated as and when required without necessarily modifying the original person table
