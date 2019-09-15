@@ -15,3 +15,32 @@ DRILL 3
 - NUMERIC affinity means it stores all fives classe.
 - REAL or INTEGER affinity has implications for casting.
 - NONE affinity means no typecasting will be done to try and convert data from the input/parsed type to the affinity type.
+- Ways of writing text
+	- CHARACTER(20)
+	- VARCHARACTER(255)
+	- VARYINGCHARACTER(255)
+	- NCHAR(55)
+	- NATIVE CHARACTER(70)
+- Ways of writing INTEGER
+	- INT
+	- INTEGER
+	- TINYINT
+	- SMALLINT
+	- MEDIUMINT
+	- BIGINT
+	- UNSIGNED BIG INT
+	- INT2
+	- INT8
+- Ways of writing REAL
+	- REAL
+	- DOUBLE
+	- DOUBLE PRECISION
+	- FLOAT
+- Ways of writing NUMERIC
+	- NUMERIC
+	- DECIMAL(10, 5) // precision and base?
+	- BOOLEAN
+	- DATE
+	- DATETIME
+- I learned that data and time are stored as TEXT, REAL, OR INTEGER values.
+- I learned that boolean values are stored as INT 1 OR 0.
