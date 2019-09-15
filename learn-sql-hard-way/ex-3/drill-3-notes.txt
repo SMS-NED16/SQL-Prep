@@ -1,0 +1,17 @@
+DRILL 1 - INSERTING MYSELF AND MY PETS INTO THE DB
+1. It's a pain to keep track of the primary key when inserting values into the database. If the primary key is not unique, the INSERT VALUES operation fails. 
+
+2. This is especially frustrating if some, but not all, INSERT queries in a script fails due to a syntax or other error. Those values will already have been inserted into the DB table with the appropriate key, which means when I fix the mistake and run the INSERT VALUES script again, I get a primary key error because the script is trying to insert values with the same primary key as previously inserted data.
+
+3. The only workaround I've been able to figure out so far is to remove the database entirely with rm -rf *.db and then repopulate it. This will have to do until I learn UPDATE or DELETE.
+
+DRILL 2 - NEW DB WITH SAME SCHEMA AS EX 2
+Did not modify the original database. Used the same script to create it. So no need to do this drill.
+
+
+DRILL 3
+- I learned that SQLite has very few basic data types: NULL, INTEGER, REAL, TEXT, and BLOB. BLOB is the most interesting: it's like a generic data type that stores data exactly as it was input. 
+- I learned that SQLite supports a concept called Type Affinity, which means any column can technically store any type of data but still has a preferred type. For instance, a TEXT affinity column will store data using NULL, TEXT, or BLOB. 
+- NUMERIC affinity means it stores all fives classe.
+- REAL or INTEGER affinity has implications for casting.
+- NONE affinity means no typecasting will be done to try and convert data from the input/parsed type to the affinity type.
