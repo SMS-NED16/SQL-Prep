@@ -23,7 +23,7 @@ CREATE TABLE person_pet(
 
 /* 	
 	Populating the database with data records 
-/*
+*/
 INSERT INTO person (id, first_name, last_name, age)
 	VALUES(0, 'Zed', 'Shaw', 37);
 	VALUES(1, 'Saad', 'Siddiqui', 23);
