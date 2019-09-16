@@ -21,9 +21,9 @@ CREATE TABLE person_pet(
 	pet_id INTEGER
 );
 
+/* 	
+	Populating the database with data records 
 /*
-	Populating the database with data records
-*/
 INSERT INTO person (id, first_name, last_name, age)
 	VALUES(0, 'Zed', 'Shaw', 37);
 	VALUES(1, 'Saad', 'Siddiqui', 23);
@@ -32,4 +32,14 @@ INSERT INTO pet (id, name, breed, age, dead)
 	VALUES(0, 'Fluffy', 'Unicorn', 1000, 0);
 	VALUES(1, 'Gigantor', 'Robot', 1, 1);
 	VALUES(2, 'Chubby', 'Calico Cat', 5, 0);
-	VALUES(3, 'Gingi', 'Chonky Tabby', 5, 0);
+	VALUES(3, 'Gingi', 'Tabby Cat', 5, 0);
+
+
+/*
+	Updating relational table
+*/
+INSERT INTO person_pet (person_id, pet_id)
+	VALUES(0, 0);
+	VALUES(0, 1);
+	VALUES(1, 2);
+	VALUES(1, 3);
