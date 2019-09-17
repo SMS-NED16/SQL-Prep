@@ -9,6 +9,8 @@ SELECT * FROM pet;
 
 /*	
 	Update query but with additional clause 
+	Default column width means the `name` will be truncated
+	Use .width 
 */
 UPDATE pet SET name = "Zed's Dead Pet" WHERE id IN (
 	SELECT pet.id
