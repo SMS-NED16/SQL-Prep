@@ -67,3 +67,8 @@ INSERT INTO pet (id, name, breed, age, dead, dob, parent) VALUES
 	(6, 'Hannah', 'Tomcat', 5, 0, '10-10-2014', 0), 
 	(7, 'Drogon', 'Dragon', 10, 0, '01-01-2009', 0),
 	(8, 'Viserion', 'Dragon', 10, 1, '01-01-2009', 0);
+
+/* Query to find names of all pets and their owners for any pets bought after 2014 */
+
+
+/* Query that can find the pets that are children of a given pet */
