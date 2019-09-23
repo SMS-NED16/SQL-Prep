@@ -71,4 +71,5 @@ INSERT INTO pet (id, name, breed, age, dead, dob, parent) VALUES
 /* Query to find names of all pets and their owners for any pets bought after 2014 */
 
 
+
 /* Query that can find the pets that are children of a given pet */
