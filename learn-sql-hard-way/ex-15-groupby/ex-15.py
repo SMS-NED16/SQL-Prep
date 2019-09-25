@@ -30,7 +30,7 @@ def random_date():
 	# Automatically converting days to years for calculation downstream
 	years = 365 * random.randint(0, 50) 
 	days = random.randint(0, 365)
-	hours = randomn.randint(0, 24)
+	hours = random.randint(0, 24)
 
 	# Returns a `timedelta` object that defines a change in time in terms of days and hours
 	past = timedelta(days=years + days, hours=hours)
