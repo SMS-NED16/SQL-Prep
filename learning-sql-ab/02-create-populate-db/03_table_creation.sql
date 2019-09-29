@@ -7,6 +7,7 @@ CREATE TABLE person
 	gender ENUM('M', 'F'),		/* In MySQL, ENUM is the same as a check constraint */
 	birth_date DATE,
 	city VARCHAR(20), 
+	street VARCHAR(20),
 	state VARCHAR(20), 
 	country VARCHAR(20), 
 	postal_code VARCHAR(20),
