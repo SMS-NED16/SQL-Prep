@@ -81,3 +81,10 @@ SELECT CONCAT('danke sch', CHAR(148), 'n');
 
 -- Find the ASCII code for a specific character
 SELECT ASCII("ö");
+
+-- Resetting the data in the string_tbl 
+DELETE FROM string_tbl;
+INSERT INTO string_tbl (char_fld, vchar_fld, text_fld) 
+VALUES ('This string is 28 characters', 
+	'This string is 28 characters', 
+	'This string is 28 characters');
