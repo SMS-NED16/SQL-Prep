@@ -88,3 +88,61 @@ INSERT INTO string_tbl (char_fld, vchar_fld, text_fld)
 VALUES ('This string is 28 characters', 
 	'This string is 28 characters', 
 	'This string is 28 characters');
+
+-- `length()`: returns the length of the string
+SELECT LENGTH(char_fld) AS char_length, 	
+	LENGTH(vchar_fld) AS varchar_length, 
+	LENGTH(text_fld) AS text_length
+FROM string_tbl;
+/*CHAR cols are stored as 30 chars, but when retrieved, trailing spaces removed */
+
+--`position()` - Find location of a substring `characters` in varchar column
+SELECT POSITION('characters' IN vchar_fld) FROM string_tbl;
+
+-- `locate()` - If you want to start searching from a position other than index 0
+SELECT LOCATE('is', vchar_fld, 5) FROM string_tbl;		/* Start looking at char 5 */
+
+-- `strcmp()` - Returns -1, 0, +1 if first str appears before, is equal, or after second in lexicographic order
+DELETE FROM string_tbl;
+INSERT INTO string_tbl(vchar_fld) VALUES('abcd');
+INSERT INTO string_tbl(vchar_fld) VALUES('xyz');
+INSERT INTO string_tbl(vchar_fld) VALUES('QRSTUV');
+INSERT INTO string_tbl(vchar_fld) VALUES('qrstuv');
+INSERT INTO string_tbl(vchar_fld) VALUES('12345');
+
+-- Display order of the vchar entries
+SELECT vchar_fld FROM string_tbl ORDER BY vchar_fld;
+
+SELECT STRCMP('12345', '12345') as 12345_12345, 	/* 0 */
+	STRCMP('abcd', 'xyz') AS abcd_xyz, 				/* -1 */
+	STRCMP('abcd', 'QRSTUV') AS abcd_QRSTUV,		/* -1 */ 
+	STRCMP('qrstuv', 'QRSTUV') AS qrstuv_QRUSTV,	/* 0 - not case sensitive*/
+	STRCMP('12345', 'xyz') AS 12345_xyz,			/* -1 */
+	STRCMP('xyz', 'qrstuv') AS xyz_qrstuv;			/* 1 */
+
+-- Regular expressions and LIKE with strings - use the bank database
+-- Returns 1 if the regular expression is satisfied, 0 otherwise
+SELECT name, name LIKE '%ns' AS ends_in_ns FROM department;
+
+-- REGEXP operator
+SELECT cust_id, cust_type_cd, fed_id,
+	fed_id REGEXP '.{3}-.{2}-.{4}' AS is_ss_no_format 
+FROM customer;
+
+-- Start using the `lrng_sql` database again
+DELETE FROM string_tbl; 
+INSERT INTO string_tbl (text_fld) VALUES ('This string was 29 characters.');
+
+-- Can use the `concat()` method to change the value in the text_fld column
+UPDATE string_tbl 
+SET text_fld = CONCAT(text_fld, ', but now it is longer');
+
+-- Can also use `concat` to build a string from several individual pieces of data
+-- Using the `bank` database again
+SELECT CONCAT(fname, ' ', lname, ' has been a ', title, ' since ', start_date) AS emp_narrative
+FROM employee
+WHERE title = 'Teller' OR title = 'Head Teller';
+
+-- Replace string with specified characters at specified index
+-- In this case, extract 5 characters starting at index 9 
+SELECT SUBSTRING('goodbye cruel world', 9, 5);
