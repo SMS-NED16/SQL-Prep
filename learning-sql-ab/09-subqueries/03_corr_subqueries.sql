@@ -72,3 +72,11 @@ SET a.last_activity_date =
 WHERE EXISTS (SELECT 1 
 	FROM transaction AS t
 	WHERE t.account_id = a.account_id);
+
+-- Data maintenance query: removes data from the department table which has no child
+-- rows in the employee table: basically, if no employees belong to a dept, delete it.
+DELETE FROM department 
+WHERE NOT EXISTS (SELECT 1
+	FROM employee 
+	WHERE employee.dept_id = department.dept_id);
+)
