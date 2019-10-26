@@ -91,3 +91,36 @@ HAVING COUNT(*) = (SELECT MAX(emp_cnt.how_many)
 	FROM (SELECT COUNT(*) AS how_many 
 		FROM account 
 		GROUP BY open_emp_id) AS emp_cnt);
+
+-- Is it possible to execute the subqueries on their own?
+-- The innermost subquery returns a table of open_emp_ids and the number of accounts they opened
+SELECT open_emp_id, COUNT(*) AS how_many 
+FROM account 
+GROUP BY open_emp_id;
+
+-- Since the enclosing query doesn't care about the emp_id (yet) it just finds the
+-- maximum number of accounts opened by a single employee and uses this as the filter 
+-- condition applied to the result of a GROUP BY that does the same thing as the inner query
+
+-- Subqueries as expression generators
+-- A subquery can be used wherever an expression appears i.e. in the SELECT, ORDER BY, GROUP BY clauses
+-- as well as the VALUES clause of an INSERT statement
+SELECT 
+(SELECT p.name FROM product AS p WHERE p.product_cd = a.product_cd) AS product, 
+(SELECT b.name FROM branch AS b WHERE b.branch_id = a.open_branch_id) AS branch, 
+(SELECT CONCAT(e.fname, ' ', e.lname) FROM employee AS e
+	WHERE e.emp_id = a.open_emp_id) AS name, 
+SUM(a.avail_balance) AS total_deposits
+FROM account AS a
+GROUP BY a.product_cd, a.open_branch_id, a.open_emp_id
+ORDER BY 1, 2;
+
+-- Subqueries can also appear in the ORDER BY clause
+SELECT emp.emp_id, CONCAT(emp.fname, ' ', emp.lname) AS emp_name, 
+(SELECT CONCAT(boss.fname, ' ', boss.lname) 
+FROM employee AS boss
+WHERE boss.emp_id = emp.superior_emp_id) AS boss_name, 
+FROM employee AS emp 
+WHERE emp.superior_emp_id IS NOT NULL 
+ORDER BY (SELECT boss.lname FROM employee AS boss 
+	WHERE boss.emp_id = emp.superior_emp_id), emp.lname;
